@@ -1,8 +1,16 @@
-.c-app {
+.article-block {
   text-align: center;
 
   h1 {
     font-size: 40px;
     color: crimson;
+    margin-bottom: 10px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
 }

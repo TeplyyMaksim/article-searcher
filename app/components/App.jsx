@@ -1,18 +1,18 @@
 import React from 'react';
-import topImg from './es6-webpack-react-babel.png';
 import './App.scss';
 import Article from './Article/Article.jsx';
+import remoteArticles from './articles.json'
 
 var App = React.createClass({
   getInitialState: function() {
     return {
-      displayedArticles: Articles
+      displayedArticles: remoteArticles
     };
   },
   handleSearch: function(event) {
     var searchQuery = event.target.value.toLowerCase();
-    var displayedArticles = Articles.filter(function(el) {
-      var searchValue = el.name.toLowerCase();
+    var displayedArticles = remoteArticles.filter(function(el) {
+      var searchValue = `${el.title.toLowerCase()} ${el.author.toLowerCase()} ${el.summary.toLowerCase()}`;
       return searchValue.indexOf(searchQuery) !== -1;
     });
     this.setState({
@@ -21,10 +21,10 @@ var App = React.createClass({
   },
   render() {
     return (
-      <div className="article-list">
+      <div className="article-block">
         <h1>List of greatest articles</h1>
-        <input type="text" placeholder="Search..." className="search-field" onChange={this.handleSearch} />
-        <ul className="articles-list">
+        <input type="text" placeholder="Search article" className="search-field" onChange={this.handleSearch} />
+        <ul className="article-list">
           {
             this.state.displayedArticles.map(function(el) {
               return <Article
@@ -38,3 +38,5 @@ var App = React.createClass({
     );
   }
 })
+
+module.exports = App;
